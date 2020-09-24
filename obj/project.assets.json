@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/Secondary 1 Tb/Git/C# projects/Wizard_Class_Practice/Wizard_Class_Practice.csproj",
+      "projectUniqueName": "/Volumes/Secondary 1 Tb/Git/C# projects/WizardGame/Wizard_Class_Practice.csproj",
       "projectName": "Wizard_Class_Practice",
-      "projectPath": "/Volumes/Secondary 1 Tb/Git/C# projects/Wizard_Class_Practice/Wizard_Class_Practice.csproj",
+      "projectPath": "/Volumes/Secondary 1 Tb/Git/C# projects/WizardGame/Wizard_Class_Practice.csproj",
       "packagesPath": "/Users/antonsplavnik/.nuget/packages/",
-      "outputPath": "/Volumes/Secondary 1 Tb/Git/C# projects/Wizard_Class_Practice/obj/",
+      "outputPath": "/Volumes/Secondary 1 Tb/Git/C# projects/WizardGame/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/antonsplavnik/.nuget/NuGet/NuGet.Config"

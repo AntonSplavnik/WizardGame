@@ -14,14 +14,18 @@ namespace Wizard_Class_Practice
 
         public static void RegenMana(Wizard wizard)
         {
-         Random mana = new Random();
-         int manaRegened = mana.Next(1, 10);
-         wizard.mana += manaRegened;
+            Random mana = new Random();
+            int manaRegened = mana.Next(1, 10);
+            wizard.mana += manaRegened;
+            Console.WriteLine($"Mana points restored: {manaRegened}");
         }
 
-        public void CastSpell (Wizard wizard, Enemy orc )
+        public void CastSpell (Wizard wizard, Enemy enemy)
         {
-            orc.health -= wizard.damage;
+            // Random damage = new Random();
+            // int generatetDamage = damage.Next(1, wizard.damage);
+            // enemy.health -= generatetDamage;
+            enemy.health -= wizard.damage;
             wizard.mana -= 10;
         }
     }
@@ -33,14 +37,16 @@ namespace Wizard_Class_Practice
         public float expirience;
         public int damage;
 
-        public void Attack(Wizard wizard, Enemy orc)
+        public void Attack(Wizard wizard, Enemy enemy)
         {
-            wizard.health -= orc.damage;
+            Random damage = new Random();
+            int generatetDamage = damage.Next(1, enemy.damage);
+            wizard.health -= generatetDamage;
         }    
     }
 
     class GameManager
-    {
+    { 
         public static void Respawn(Wizard wizard)
         {
             if ( wizard.health <= 0)
@@ -60,8 +66,8 @@ namespace Wizard_Class_Practice
                 
                 while (wizard.mana >= 0 && orc.health >=0) //wizard attacks enemy (while mana >= 0)
                 {
-
-                    if (wizard.mana <= 0)  
+                    
+                    if (wizard.mana < 10)  
                     {
                         //Console.WriteLine("_______________________________");
                         System.Console.WriteLine("Not enough mana!");
@@ -73,7 +79,8 @@ namespace Wizard_Class_Practice
                     if (orc.health <=0)
                     {
                         break;
-                    }    
+                    }
+
                     wizard.CastSpell(wizard, orc); 
                     orc.Attack(wizard, orc);
 
@@ -101,7 +108,14 @@ namespace Wizard_Class_Practice
                 Console.WriteLine($"Action #{count}. Wizard Health: {wizard.health}");
                 Console.WriteLine($"Action #{count}. Orc Health : {orc.health}");
                 Console.WriteLine("_______________________________");   
-                   
+
+                if (wizard.health <= 0) // check if alive (if not respawn)
+                {
+                    System.Console.WriteLine("You died. You will be respawned.");
+                    GameManager.Respawn(wizard);
+                    break;
+                }
+                
             }
 
             // if wizard alive and enemy is dead give exp
@@ -120,21 +134,24 @@ namespace Wizard_Class_Practice
             Console.ForegroundColor = ConsoleColor.Blue;
             
             Wizard wizard01 = new Wizard() {health = 100, expirience = 0f, damage = 10, mana = 100};
-            Enemy Orc = new Enemy() {health = 130, expirience = 14f, damage = 7 };
+            Enemy Orc = new Enemy() {health = 100, expirience = 14f, damage = 7 };
             Enemy Orc02 = new Enemy() {health = 50, expirience = 5f, damage = 3 };
 
             Console.WriteLine("\n\n\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
             GameManager.Fight(wizard01, Orc);
-            System.Console.WriteLine($"Wizard Health:{wizard01.health}\nWizard Mana:{wizard01.mana}\nWizard EXP:{wizard01.expirience}");
+            System.Console.WriteLine($"Wizard Health: {wizard01.health}\nWizard Mana: {wizard01.mana}\nWizard EXP: {wizard01.expirience}");
+            
             Console.WriteLine("\n\n\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
             GameManager.Fight(wizard01, Orc);
-            System.Console.WriteLine($"Wizard Health:{wizard01.health}\nWizard Mana:{wizard01.mana}\nWizard EXP:{wizard01.expirience}");
+            System.Console.WriteLine($"Wizard Health: {wizard01.health}\nWizard Mana: {wizard01.mana}\nWizard EXP: {wizard01.expirience}");
+            
             Console.WriteLine("\n\n\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
             Wizard.RegenMana(wizard01);
-            System.Console.WriteLine($"Wizard Health:{wizard01.health}\nWizard Mana:{wizard01.mana}\nWizard EXP:{wizard01.expirience}");
+            System.Console.WriteLine($"Wizard Health: {wizard01.health}\nWizard Mana: {wizard01.mana}\nWizard EXP: {wizard01.expirience}");
+            
             Console.WriteLine("\n\n\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
             GameManager.Fight(wizard01, Orc02);
-            System.Console.WriteLine($"Wizard Health:{wizard01.health}\nWizard Mana:{wizard01.mana}\nWizard EXP:{wizard01.expirience}");
+            System.Console.WriteLine($"Wizard Health: {wizard01.health}\nWizard Mana: {wizard01.mana}\nWizard EXP: {wizard01.expirience}");
         }    
 
     }
