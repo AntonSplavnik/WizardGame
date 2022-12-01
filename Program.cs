@@ -1,4 +1,5 @@
 ﻿using System;
+using Wizard_Class_Practice;
 
 namespace Wizard_Class_Practice
 {
@@ -97,11 +98,12 @@ namespace Wizard_Class_Practice
                     GameManager.Respawn(wizard);
                     break;
                 }
-                if (orc.health <=0)
-                    {
-                        break;
-                    }  
 
+                if (orc.health <= 0)
+                {
+                    break;
+                }
+                    
                 count++;
                 orc.Attack(wizard, orc);
                 Console.WriteLine("_______________________________");
@@ -136,6 +138,15 @@ namespace Wizard_Class_Practice
             Wizard wizard01 = new Wizard() {health = 100, expirience = 0f, damage = 10, mana = 100};
             Enemy Orc = new Enemy() {health = 100, expirience = 14f, damage = 7 };
             Enemy Orc02 = new Enemy() {health = 50, expirience = 5f, damage = 3 };
+
+            // System.Console.WriteLine(" Hello!\n This is my first console game.\n Your will be playing as wizard and fighting different monsters!");
+            // System.Console.WriteLine($"To continue press Enter:");
+            // var input = Console.ReadLine();
+            // if (input != " ")
+            // {
+            //     System.Console.WriteLine("Invalid input.\nTry again");
+            // }
+
 
             Console.WriteLine("\n\n\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
             GameManager.Fight(wizard01, Orc);
